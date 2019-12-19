@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div style="text-align: center">
+    <br>
+    <h1 th:text="'Account Details'">Test</h1>
+    <h3>
+        <table class="table table-hover">
+            <tr >
+                <td th:text="'Account Number '" style="text-align: right">First Name</td>
+                <td th:text="${account.getAccountNumber()}" style="text-align: left">test</td>
+                <br>
+            </tr>
+            <tr >
+                <td th:text="'BIC '" style="text-align: right">Last Name</td>
+                <td th:text="${account.getBic()}" style="text-align: left">test</td>
+            </tr>
+            <tr >
+                <td th:text="'NSC '" style="text-align: right">Last Name</td>
+                <td th:text="${account.getNsc()}" style="text-align: left">test</td>
+            </tr>
+            <tr >
+                <td th:text="'IBAN '" style="text-align: right">Last Name</td>
+                <td th:text="${account.getIban()}" style="text-align: left">test</td>
+            </tr>
+        </table>
+        <div id="balance">
+        <h2 th:text="'Account Balance'">test</h2>
+         <h2 style="font-size: 60px" th:text="'€ '+${account.getBalance()}">test</h2>
+        </div>
+        <div id="euro_gif">
+        <img src="img/euro.gif" onclick="myFunction()" style="width: 110px;"><br>
+            <b>click on the image to see balance</b></div>
+
+    </h3>
+    <hr>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

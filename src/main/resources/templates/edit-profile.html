@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+
+    <h2 th:text="'Edit Profile'"></h2><br><br>
+    <form class="form-signin" autocomplete="off" th:action="@{/profile/update}" th:object="${user}" method="POST">
+        <table class="table table-hover">
+            <tr>
+                <td> <h3 th:text="'First Name '">First Name</h3></td>
+                <td><input type="text" th:field="*{firstName}" class="form-control input-lg" title="firstName" required />
+                    <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"/></td>
+            </tr>
+            <tr>
+                <td> <h3 th:text="'Last Name '">Last Name</h3></td>
+                <td><input type="text" th:field="*{lastName}" class="form-control input-lg" title="lastName" required/>
+                    <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"/></td>
+            </tr>
+            <tr >
+                <td> <h3 th:text="'Email '"></h3></td>
+                <td><input type="email" th:field="*{email}" class="form-control input-lg" title="email" required/>
+                    <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/></td>
+            </tr>
+            <tr >
+                <td> <h3 th:text="'Phone Number '"></h3></td>
+                <td><input type="text" th:field="*{mobileNumber}" class="form-control input-lg" title="mobileNumber" required/>
+                    <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}"/></td>
+            </tr>
+            <tr>
+                <td><a th:href="@{/profile}" class="btn btn-outline-dark" type="text" th:text="'Back to My Profile'"></a></td>
+                <td><input class="btn btn-outline-dark" type="submit" th:value="'Update'" /></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form class="form-signin" autocomplete="off" th:action="@{enable}" th:object="${user}" method="POST">
+                <h4>
+                    <fieldset>
+                        <h2 th:text="'ENABLE ' + ${type}"></h2>
+                        <div class="form-group">
+                            <label th:text="'Username of '+${type.toLowerCase()}+' to be enabled'"></label>
+                            <input type="text" th:field="*{username}" class="form-control input-lg" title="username" required autofocus="true" />
+                            <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label th:text="'Confirm Username of '+${type.toLowerCase()}+' to be enabled'"></label>
+                            <input type="text" th:field="*{firstName}" class="form-control input-lg" />
+                            <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label th:text="'Confirm your password'"></label>
+                            <input type="password" th:field="*{password}" class="form-control input-lg" title="password" required/>
+                            <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        </div>
+                        <input type="hidden" th:value="${type}"  th:attr="name='type'" />
+                        <input class="btn btn-outline-dark" type="submit" th:value="'ENABLE ' + ${type}" />
+                    </fieldset>
+                </h4>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

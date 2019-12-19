@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header-css">
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row">
+            <H3><span th:text="'Incorrect Token. Please recheck your URL sent to your mail or Contact admin to enable your account'"></span></H3>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

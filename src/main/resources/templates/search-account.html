@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div style="text-align: center">
+</div>
+<div class="container">
+    <br><br>
+    <div style="text-align: center">
+        <form class="form-signin" autocomplete="off" th:action="@{/search-customer}" th:object="${account}" method="POST">
+            <table class="table table-hover">
+                <h3 th:text="'Enter the Account Number of the Customer'"></h3>
+                <tr>
+                    <td> <h3 th:text="'Account Number '">First Name</h3></td>
+                    <td><input type="text" th:field="*{accountNumber}" class="form-control input-lg" required />
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"/></td>
+                    <br>
+                </tr>
+                <tr>
+                    <td><a th:href="@{/}" class="btn btn-outline-dark" type="text" th:text="'Back to Home'"></a></td>
+                    <td><input class="btn btn-outline-dark" type="submit" th:value="'Search'" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

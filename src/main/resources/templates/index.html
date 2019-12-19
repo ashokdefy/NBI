@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <br><br>
+    <h3>
+        <div sec:authorize="hasRole('EMPLOYEE')">
+            DEPOSIT AMOUNT
+
+            <form class="form-signin" autocomplete="off" th:action="@{/deposit}" th:object="${account}" method="POST">
+                <div class="form-group"  style="text-align: center">
+                    <table class="table table-hover">
+                        <tr>
+                            <td> <h3 th:text="'Account Number '">First Name</h3></td>
+                            <td>
+                                <input type="text" th:field="*{accountNumber}" class="form-control input-lg" required autofocus="true" />
+                                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <h3 th:text="'Confirm Account Number '">First Name</h3></td>
+                            <td>
+                                <input type="text" th:field="*{bic}" class="form-control input-lg" required />
+                                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('bic')}" th:errors="*{bic}"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <h3 th:text="'Amount to Deposit '">First Name</h3></td>
+                            <td>
+                                <input type="text" th:field="*{transfer}" class="form-control input-lg" required />
+                                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('transfer')}" th:errors="*{transfer}"></div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <input class="btn btn-outline-dark" type="submit" th:value="'Deposit'" />
+            </form>
+
+        </div>
+        <div sec:authorize="hasRole('ADMIN')" style="color: blue ; padding-left: 250px">
+            <h6 class="alert alert-success" th:if="${success!=null}"  style="margin-left: 200px ; margin-right: 460px"> Successfully Updated</h6>
+               <div sec:authorize="hasAnyAuthority('CREATE_CUSTOMER','ENABLE_CUSTOMER','DISABLE_CUSTOMER','DELETE_CUSTOMER')"> User :<br>
+            <div  style="padding-left: 50px">
+                <a class="btn btn-primary" sec:authorize="hasAuthority('CREATE_CUSTOMER')" th:href="@{/admin/create(type='customer')}" th:text="' Create Customer '"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('ENABLE_CUSTOMER')" th:href="@{/admin/enable(type='customer')}" th:text="' Enable Customer '"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DISABLE_CUSTOMER')" th:href="@{/admin/disable(type='customer')}" th:text="'Disable Customer '"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DELETE_CUSTOMER')" th:href="@{/admin/delete(type='customer')}" th:text="'Delete Customer '"></a>
+            </div></div>
+            <div sec:authorize="hasAnyAuthority('CREATE_EMPLOYEE','ENABLE_EMPLOYEE','DISABLE_EMPLOYEE','DELETE_EMPLOYEE')"> Employee :<br>
+            <div  style="padding-left: 50px">
+                <a class="btn btn-primary" sec:authorize="hasAuthority('CREATE_EMPLOYEE')" th:href="@{/admin/create(type='employee')}" th:text="'Create Employee'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('ENABLE_EMPLOYEE')" th:href="@{/admin/enable(type='employee')}" th:text="'Enable Employee'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DISABLE_EMPLOYEE')" th:href="@{/admin/disable(type='employee')}" th:text="'Disable Employee'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DELETE_EMPLOYEE')" th:href="@{/admin/delete(type='employee')}" th:text="'Delete Employee'"></a>
+            </div></div>
+            <div sec:authorize="hasAnyAuthority('CREATE_ADMIN','ENABLE_ADMIN','DISABLE_ADMIN','DELETE_ADMIN')">                 Admin :<br>
+                <div  style="padding-left: 50px">
+                <a class="btn btn-primary" sec:authorize="hasAuthority('CREATE_ADMIN')" th:href="@{/admin/create(type='admin')}" th:text="'Create Admin'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('ENABLE_ADMIN')" th:href="@{/admin/enable(type='admin')}" th:text="'Enable Admin'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DISABLE_ADMIN')" th:href="@{/admin/disable(type='admin')}" th:text="'Disable Admin'"></a>
+                <a class="btn btn-primary" sec:authorize="hasAuthority('DELETE_ADMIN')" th:href="@{/admin/delete(type='admin')}" th:text="'Delete Admin'"></a>
+                </div></div>
+        </div>
+    </h3>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+
+</html>

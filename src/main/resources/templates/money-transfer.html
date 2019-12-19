@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2 th:text="'Money Transfer'" style="text-align: center"></h2><br>
+    <br><h3>
+    <form class="form-signin" autocomplete="off" th:action="@{/money-transfer}" th:object="${account}" method="POST">
+    <table class="table table-hover">
+        <tr >
+            <td th:text="'Account Number '">First Name</td>
+            <td> <input type="text" th:field="*{accountNumber}" class="form-control input-lg" required>
+                <div class="alert alert-danger error-alert " th:if="${#fields.hasErrors('accountNumber')}" th:errors="*{accountNumber}"/></td>
+        </tr>
+        <tr >
+            <td th:text="'BIC '">Last Name</td>
+            <td> <input type="text" th:field="*{bic}" class="form-control input-lg" required>
+                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('bic')}" th:errors="*{bic}"/></td>
+        </tr>
+        <tr >
+            <td th:text="'NSC '">Last Name</td>
+            <td> <input type="text" th:field="*{nsc}" class="form-control input-lg" required>
+                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('nsc')}" th:errors="*{nsc}"/></td>
+        </tr>
+        <tr >
+            <td th:text="'IBAN '">Last Name</td>
+            <td> <input type="text" th:field="*{iban}" class="form-control input-lg" required>
+                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('iban')}" th:errors="*{iban}"/></td>
+        </tr>
+        <tr >
+            <td th:text="'Amount '">Last Name</td>
+            <td> <input type="number"  step="0.01" th:field="*{transfer}" class="form-control input-lg" oninput="remainingBalance()" required>
+                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('transfer')}" th:errors="*{transfer}"/></td>
+        </tr>
+        <tr >
+            <td th:text="'Remaining Balance '">Last Name</td>
+            <td id="bal" th:text="${balance}">
+        </tr>
+        <tr>
+            <td th:text="'Confirm your password '">Last Name</td>
+            <td> <input type="password"  th:name="password" class="form-control input-lg"/>
+                <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}"/></td>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input class="btn btn-outline-dark" type="submit" th:value="'Transfer'"/></td>
+        </tr>
+    </table>
+    </form></h3>
+
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<script th:inline="javascript">
+    var balance = parseFloat(/*[[${balance}]]*/ "");
+    function remainingBalance() {
+        var amount = document.getElementById("transfer").value;
+        if(amount<0){
+            document.getElementById("bal").innerHTML = "Enter the positive amount " + balance;
+            document.getElementById("bal").style.fontSize = "16px";
+            document.getElementById("bal").style.color = "red";
+        }
+        else if(balance<amount) {
+            document.getElementById("bal").innerHTML = "Enter the amount less than " + balance;
+            document.getElementById("bal").style.fontSize = "16px";
+            document.getElementById("bal").style.color = "red";
+        }
+        else{
+            amount = parseFloat(amount).toFixed(2);
+            document.getElementById("bal").innerHTML = balance-amount +"";
+            document.getElementById("bal").style.fontSize = "28px";
+            document.getElementById("bal").style.color = "black";
+        }
+    }
+</script>
+</body>
+</html>

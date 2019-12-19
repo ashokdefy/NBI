@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h4>
+        <table class="table table-hover">
+            <tr ><td> <h2 style="text-align: center" th:text="'Account Holder Details '"></h2></td></tr>
+            <tr >
+                <td th:text="'Name '">First Name</td>
+                <td th:text="${user.getFirstName()}  + ' ' +  ${user.getLastName()}">test</td>
+                <br>
+            </tr>
+            <tr >
+                <td th:text="'Email '">Last Name</td>
+                <td th:text="${user.getEmail()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Phone Number '">Last Name</td>
+                <td th:text="${user.getMobileNumber()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Account Type '">Last Name</td>
+                <td th:text="${user.getAccountType()}">test</td>
+            </tr>
+            <tr><td><h2 style="text-align: center" th:text="'Account Details '"></h2></td></tr>
+            <tr >
+                <td th:text="'Account Number'">First Name</td>
+                <td th:text="${user.account.getAccountNumber()}">test</td>
+                <br>
+            </tr>
+            <tr >
+                <td th:text="'BIC'">Last Name</td>
+                <td th:text="${user.account.getBic()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'NSC'">Last Name</td>
+                <td th:text="${user.account.getNsc()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'IBAN'">Last Name</td>
+                <td th:text="${user.account.getIban()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Account Balance'">Last Name</td>
+                <td th:text="${user.account.getBalance()}">test</td>
+            </tr>
+
+        </table>
+    </h4>
+    <br>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

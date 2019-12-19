@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form class="form-signin" autocomplete="off" th:action="@{register}" th:object="${userForm}" method="POST">
+                <fieldset>
+                    <h1 th:text="'Registration'"></h1>
+                    <div class="form-group">
+                        <label th:text="'Username'"></label>
+                        <input type="text" th:field="*{username}" class="form-control input-lg" title="username" required autofocus="true" />
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                    </div>
+                     <div class="form-group">
+                        <label th:text="'First Name'"></label>
+                        <input type="text" th:field="*{firstName}" class="form-control input-lg" title="firstName" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label th:text="'Last Name'"></label>
+                        <input type="text" th:field="*{lastName}" class="form-control input-lg" title="lastName" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                    </div>
+                    <div class="form-group">
+                        <th:block th:text="'Select a Account Type'" />
+                        <select th:field="*{accountType}" class="form-control custom-select" required title="account-type" >
+                            <option value="SAVINGS" th:text="'Savings'" selected >SAVINGS</option>
+                            <option value="CURRENT" th:text="'Current'">CURRENT</option>
+                            <option value="STUDENT" th:text="'Student'">STUDENT</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label th:text="'E-mail'"></label>
+                        <input type="email" th:field="*{email}" class="form-control input-lg" title="email" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="form-group">
+                        <label th:text="'Mobile Number'"></label>
+                        <select name="countryCode" th:field="*{countrycode}" class="form-control custom-select" th:width="10px" required>
+                            <th:block th:replace="fragments/country-code"> </th:block></select>
+                        <input type="text" th:field="*{mobileNumber}" class="form-control input-lg" title="mobileNumber" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label th:text="'Password'"></label>
+                        <input type="password" th:field="*{password}" class="form-control input-lg" title="password" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+                    </div>
+                    <div class="form-group">
+                        <label th:text="'Confirm Password'"></label>
+                        <input type="password" th:field="*{passwordConfirm}" class="form-control input-lg" title="passwordConfirm" required/>
+                        <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></div>
+                    </div>
+                    <div class="g-recaptcha" data-sitekey="6Ld3dccUAAAAANWjDjG5t82s12UEGujmpANnT6VA"></div>
+                    <div class="alert alert-danger error-alert" th:if="${#fields.hasErrors('reCaptcha')}" th:errors="*{reCaptcha}"></div>
+
+                    <input class="btn btn-outline-dark" type="submit" th:value="'Register'" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>

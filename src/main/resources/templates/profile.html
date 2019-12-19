@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header-css">
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+<div class="container">
+    <h2 th:text="'My Profile'"></h2><br><br>
+        <h3>
+        <table class="table table-hover">
+            <tr >
+                <td th:text="'First Name '">First Name</td>
+                <td th:text="${user.getFirstName()}">test</td>
+                <br>
+            </tr>
+            <tr >
+                <td th:text="'Last Name '">Last Name</td>
+                <td th:text="${user.getLastName()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Email '">Last Name</td>
+                <td th:text="${user.getEmail()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Phone Number '">Last Name</td>
+                <td th:text="${user.getMobileNumber()}">test</td>
+            </tr>
+            <tr >
+                <td th:text="'Account Type '">Last Name</td>
+              <td th:text="${user.getAccountType()}">test</td>
+            </tr>
+        </table>
+    </h3>
+    <br>
+    <h4><a class="nav-link"  th:href="@{/profile/update}" th:text="'Click here to Update'"></a></h4>
+    <h4><a class="nav-link"  th:href="@{/profile/password}" th:text="'Click here to Change Passsword'"></a></h4>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
