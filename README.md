@@ -2,4 +2,4 @@
 # National Bank of Ireland
 
 
-Please refer to the SWP -NBI for complete documentation. 
+Please refer to the SPW -NBI for complete documentation. 
